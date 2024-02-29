@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Mall Map</title>
+  <!-- Include Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <!-- Specify the map container's dimensions in CSS -->
+  <style>
+    #map {
+      height: 600px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Create a container for the map -->
+<div id="map"></div>
+
+<script>
+  // Initialize Leaflet map
+  var map = L.map('map').setView([mallCenterLat, mallCenterLng], initialZoom);
+
+  // Add base map layers
+  var baseLayers = {
+    'Level 1': L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }),
+    'Level 2': L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }),
+    'Level 3': L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }),
+  };
+
+  // Add default base layer
+  baseLayers['Level 1'].addTo(map);
+
+  // Add control for switching between base layers
+  L.control.layers(baseLayers).addTo(map);
+
+  // Add markers for each shop on Level 1
+  var shopsLevel1 = [
+    { name: 'Shop A', location: [shopALat, shopALng] },
+    { name: 'Shop B', location: [shopBLat, shopBLng] },
+    // Add more shops for Level 1
+  ];
+
+  shopsLevel1.forEach(function(shop) {
+    L.marker(shop.location)
+      .addTo(map)
+      .bindPopup(shop.name); // Display shop name on click
+  });
+
+  // Add markers for each shop on Level 2
+  var shopsLevel2 = [
+    { name: 'Shop X', location: [shopXLat, shopXLng] },
+    { name: 'Shop Y', location: [shopYLat, shopYLng] },
+    // Add more shops for Level 2
+  ];
+
+  // Create a separate layer for Level 2 shops
+  var level2Layer = L.layerGroup(shopsLevel2);
+
+  // Add layer control for Level 2 shops
+  L.control.layers(null, { 'Level 2': level2Layer }).addTo(map);
+</script>
+
+</body>
+</html>
