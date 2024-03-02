@@ -6,6 +6,7 @@
   <title>Shopping Mall Map</title>
   <!-- Include Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  
   <!-- Specify the map container's dimensions in CSS -->
   <style>
     #map {
@@ -19,9 +20,12 @@
 <!-- Create a container for the map -->
 <div id="map"></div>
 
+<!-- Include Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
 <script>
   // Initialize Leaflet map
-  var map = L.map('map').setView([mallCenterLat, mallCenterLng], initialZoom);
+  var map = L.map('map').setView([5.3331, 100.3066], 13); // Example zoom level (13)
 
   // Add base map layers
   var baseLayers = {
@@ -44,8 +48,8 @@
 
   // Add markers for each shop on Level 1
   var shopsLevel1 = [
-    { name: 'Shop A', location: [shopALat, shopALng] },
-    { name: 'Shop B', location: [shopBLat, shopBLng] },
+    { name: 'Shop A', location: [5.3331, 100.3066] }, // Example location
+    { name: 'Shop B', location: [5.3332, 100.3067] }, // Example location
     // Add more shops for Level 1
   ];
 
@@ -57,8 +61,8 @@
 
   // Add markers for each shop on Level 2
   var shopsLevel2 = [
-    { name: 'Shop X', location: [shopXLat, shopXLng] },
-    { name: 'Shop Y', location: [shopYLat, shopYLng] },
+    { name: 'Shop X', location: [5.3333, 100.3068] }, // Example location
+    { name: 'Shop Y', location: [5.3334, 100.3069] }, // Example location
     // Add more shops for Level 2
   ];
 
